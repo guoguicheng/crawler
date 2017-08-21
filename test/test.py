@@ -1,6 +1,7 @@
 #encoding:utf-8
 import sys,os
-from src.crawler import *
+sys.path.append(r"../src")
+from crawler import *
 url=""
 
 if __name__ =='__main__':
