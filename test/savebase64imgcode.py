@@ -18,7 +18,11 @@ if __name__ =='__main__':
 	text=carw.getHtml(url)
 	print "##########################获取base64 编码图片##################################\n"
 	data=carw.getImgBase64Str(text)
-	res=resource()
-	
 	print "count=",len(data)
-	res.saveBase64Img('./base64',data)
+	res=resource()
+	for row in data:
+		restr=r'(.+)/(.+);(.+),(.+)'
+		pat=re.compile(restr,re.I)
+		ds=re.match(pat,row)
+		name=random.randint(10000,999999)
+		res.saveBase64Img('./base64/%s.%s' %(name,ds.group(2)),ds.group(4))

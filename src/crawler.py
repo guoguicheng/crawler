@@ -86,18 +86,15 @@ class carwler:
 class resource:
     def downloadImg(self,url,savePath,imgurl):
 		imgurl=urljoin(url,imgurl,savePath)
-		filepathname=str('%s/pic_%d'%(savePath,random.randint(1000,999999))+str(os.path.splitext(urllib2.unquote(imgurl).decode('utf8').split('/')[-1])[1])).lower()
+		filepathname=str('%s/'%(savePath)+str(os.path.splitext(urllib2.unquote(imgurl).decode('utf8').split('/')[-1])[1])).lower()
 		print '[Debug] Download file :'+ imgurl+' >> '+filepathname
 		urllib.urlretrieve(imgurl,filepathname)
+		return filepathname
 
-    def saveBase64Img(self,savePath,DataList):
-        for row in DataList:
-            restr=r'(.+)/(.+);(.+),(.+)'
-            pat=re.compile(restr,re.I)
-            ds=re.match(pat,row)
-            file=open("%s/%d.%s" %(savePath,random.randint(1000,999999),ds.group(2)),'wb')
-            imgdata=base64.b64decode(ds.group(4))
-            file.write(imgdata)
-            file.close()
+    def saveBase64Img(self,fileName,base64Str):
+		file=open("%s" %(fileName),'wb')
+		imgdata=base64.b64decode(base64Str)
+		file.write(imgdata)
+		file.close()
 
 	
