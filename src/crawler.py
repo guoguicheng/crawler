@@ -2,7 +2,7 @@
 import urllib2
 import urllib
 import chardet
-import re
+import re,random,os
 from urlparse import urljoin
 import base64
 class carwler:
@@ -26,7 +26,8 @@ class carwler:
         return s
 
     def getImgBase64Str(self,str):
-        pat=re.compile("<img[\s\S]+src=[\'\"]data:image/(.+?)[\'\"][\s\S]?>",re.I)
+        restr=r'<img[\s\S]+?src=[\'\"]data:(.+?)[\'\"][\s\S\>]?'
+        pat=re.compile(restr,re.I)
         ds=re.findall(pat,str)
         return ds
 
@@ -48,7 +49,7 @@ class carwler:
         return list(set([Arr[0] for Arr in imgList]))
         #return list(set(imgList))
 
-    def getMediaListByExt(self,html):
+    def getMediaList(self,html):
         restr=ur'('
         restr+=ur'(http[s]?:\/\/)?[^\s,"]*\.mp3'
         restr+=ur'|(http[s]?:\/\/)?[^\s,"]*\.mp4'
@@ -82,27 +83,21 @@ class carwler:
         htmlurl = re.compile(restr)
         links = re.findall(htmlurl,html)
         return list(set(links))
-    def download(self,imgList, page):
-        x = 1
-        for imgurl in imgList:
-            imgurl=urljoin(url,imgurl)
-            filepathname=str('D:/tmp/python/dimg/pic_%09d_%010d'%(page,x)+str(os.path.splitext(urllib2.unquote(imgurl).decode('utf8').split('/')[-1])[1])).lower()
-            print '[Debug] Download file :'+ imgurl+' >> '+filepathname
-            urllib.urlretrieve(imgurl,filepathname)
-            x+=1
+class resource:
+    def downloadImg(self,url,savePath,imgurl):
+		imgurl=urljoin(url,imgurl,savePath)
+		filepathname=str('%s/pic_%d'%(savePath,random.randint(1000,999999))+str(os.path.splitext(urllib2.unquote(imgurl).decode('utf8').split('/')[-1])[1])).lower()
+		print '[Debug] Download file :'+ imgurl+' >> '+filepathname
+		urllib.urlretrieve(imgurl,filepathname)
 
-    def downImageNum(self,pagenum):
-        page = 1
-        pageNumber = pagenum
-        while(page <= pageNumber):
-            html = getHtml(url)
-            imageList = getImageList(html)
-            download(imageList,page)
-            page = page+1
-    def saveBase64Img(self,fileName,strs):
-        imgdata=base64.b64decode(strs)
-        file=open(fileName,'wb')
-        file.write(imgdata)
-        file.close()
+    def saveBase64Img(self,savePath,DataList):
+        for row in DataList:
+            restr=r'(.+)/(.+);(.+),(.+)'
+            pat=re.compile(restr,re.I)
+            ds=re.match(pat,row)
+            file=open("%s/%d.%s" %(savePath,random.randint(1000,999999),ds.group(2)),'wb')
+            imgdata=base64.b64decode(ds.group(4))
+            file.write(imgdata)
+            file.close()
 
 	

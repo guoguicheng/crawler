@@ -14,10 +14,10 @@ if __name__ =='__main__':
 	if(url==""):
 		print "type --h ?"
 		quit()
-	carw=carwler();
-	print "####################获取文本内容####################"
+	carw=carwler()
 	text=carw.getHtml(url)
-	print carw.del_tags(text)
-	print "##########################获取base64 编码图片##################################\n"
-	data=carw.getImgBase64Str(text)
-	print data
+	print "##########################获取图片地址##################################\n"
+	data=carw.getImageList(text)
+	print "count=",len(data)
+	for row in data:
+	    print row
