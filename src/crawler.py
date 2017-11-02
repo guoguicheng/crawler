@@ -2,7 +2,7 @@
 import urllib2
 import urllib
 import chardet
-import re,random,os
+import re,os
 from urlparse import urljoin
 import base64
 class carwler:
