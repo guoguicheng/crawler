@@ -3,7 +3,7 @@ import sys,os
 sys.path.append(r"../src")
 from crawler import *
 import random
-
+from selenium import webdriver
 url=""
 
 if __name__ =='__main__':
@@ -17,7 +17,11 @@ if __name__ =='__main__':
 		print "type --h ?"
 		quit()
 	carw=carwler()
-	text=carw.getHtml(url)
+	browser=webdriver.PhantomJS()
+	browser.get(url)
+	text=browser.page_source
+	browser.quit()
+
 	print "##########################获取base64 编码图片##################################\n"
 	data=carw.getImgBase64Str(text)
 	print "count=",len(data)
