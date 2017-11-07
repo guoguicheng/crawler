@@ -26,9 +26,12 @@ if __name__ =='__main__':
 	data=carw.getImgBase64Str(text)
 	print "count=",len(data)
 	res=resource()
-	for row in data:
-		restr=r'(.+)/(.+);(.+),(.+)'
-		pat=re.compile(restr,re.I)
-		ds=re.match(pat,row)
-		name=random.randint(10000,999999)
-		res.saveBase64Img('./base64/%s.%s' %(name,ds.group(2)),ds.group(4))
+	restr=r'(.+)/(.+);(.+),(.+)'
+	pat=re.compile(restr,re.I)
+	#print data[0]==data[1]
+	for row in range(0,len(data)):
+	#    print data[row]
+	    ds=re.match(pat,data[row])
+	    name=random.randint(10000,999999)
+	    res.saveBase64Img('./base64/%s.%s' %(name,ds.group(2)),ds.group(4))
+	    print(row,ds.group(2))
