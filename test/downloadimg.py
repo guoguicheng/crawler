@@ -15,9 +15,9 @@ if __name__ =='__main__':
 		print "type --h ?"
 		quit()
 	carw=carwler()
-	text=carw.getHtml(url)
+	text=carw.delComment(carw.delScript(carw.getHtml(url)))
 	print "##########################获取base64 编码图片##################################\n"
-	data=carw.getImageList(text)
+	data=carw.getImageList(url,text)
 	res=resource()
 	
 	print "count=",len(data)

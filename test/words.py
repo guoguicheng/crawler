@@ -18,5 +18,5 @@ if __name__ =='__main__':
 	text=carw.getHtml(url)
 	print "####################获取文本内容####################"
 	
-	print carw.del_tags(text)
+	print carw.getText(text)
 	

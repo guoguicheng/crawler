@@ -15,9 +15,10 @@ if __name__ =='__main__':
 		print "type --h ?"
 		quit()
 	carw=carwler()
-	text=carw.getHtml(url)
+	text=carw.delTag(carw.getHtml(url))
+
 	print "##########################获取图片地址##################################\n"
-	data=carw.getImageList(text)
+	data=carw.getImageList(url,text)
 	print "count=",len(data)
 	for row in data:
 	    print row

@@ -17,7 +17,7 @@ if __name__ =='__main__':
 	carw=carwler()
 	text=carw.getHtml(url)
 	print "##########################获取图片地址##################################\n"
-	data=carw.getMediaList(text)
+	data=carw.getMediaList(url,text)
 	print "count=",len(data)
 	for row in data:
 	    print row

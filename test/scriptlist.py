@@ -17,7 +17,7 @@ if __name__ =='__main__':
 	carw=carwler()
 	text=carw.getHtml(url)
 	print "##########################获取引用脚本地址##################################\n"
-	data=carw.getAllScript(text)
+	data=carw.getAllScript(url,text)
 	print "count=",len(data)
 	for row in data:
 	    print row

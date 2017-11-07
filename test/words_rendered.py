@@ -2,6 +2,7 @@
 import sys,os
 sys.path.append(r"../src")
 from crawler import *
+from selenium import webdriver
 url=""
 
 if __name__ =='__main__':
@@ -15,9 +16,11 @@ if __name__ =='__main__':
 		print "type --h ?"
 		quit()
 	carw=carwler()
-	text=carw.getHtml(url)
-	print "##########################获取所有链接地址##################################\n"
-	data=carw.getAllLinks(text)
-	print "count=",len(data)
-	for row in data:
-	    print row
+	browser=webdriver.PhantomJS()
+	browser.get(url)
+	text=browser.page_source
+	browser.quit()
+	print "####################获取文本内容####################"
+	
+	print carw.getText(text)
+	
