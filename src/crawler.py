@@ -1,10 +1,7 @@
 #encoding:utf-8
-import urllib2
-import urllib
-import chardet
-import re,os
+import urllib2,urllib,chardet,re,os,base64
 from urlparse import urljoin
-import base64
+
 class carwler:
     def getHtml(self,url):
         data1=urllib2.urlopen(url).read()
@@ -86,8 +83,9 @@ class carwler:
 class resource:
     def downloadImg(self,url,savePath,imgurl):
         imgurl=urljoin(url,imgurl,savePath)
-        filepathname=str('%s/'%(savePath)+str(os.path.splitext(urllib2.unquote(imgurl).decode('utf8').split('/')[-1])[1])).lower()
-        print '[Debug] Download file :'+ imgurl+' >> '+filepathnameurllib.urlretrieve(imgurl,filepathname)
+        filepathname=str('%s/'%(savePath)+str(urllib2.unquote(imgurl).decode('utf8').split('/')[-1])).lower()
+        print '[Debug] Download file :'+ imgurl+' >> '+filepathname
+        urllib.urlretrieve(imgurl,filepathname)
         return filepathname
 
     def saveBase64Img(self,fileName,base64Str):
