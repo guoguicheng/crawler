@@ -15,7 +15,7 @@ if __name__ =='__main__':
 		print "type --h ?"
 		quit()
 	carw=carwler()
-	text=carw.delTag(carw.getHtml(url))
+	text=carw.getHtml(url)
 
 	print "##########################获取图片地址##################################\n"
 	data=carw.getImageList(url,text)
