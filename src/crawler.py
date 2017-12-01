@@ -38,7 +38,7 @@ class carwler:
             tag="|"
         reg_script_str+=ur')'
         self.pat_script = re.compile(reg_script_str)
-        self.pat_link=re.compile(ur'(((src|href)[\s\=\'\"]{1,}([\.\/][a-zA-Z0-9\/\.\u4e00-\u9fa5\\x20-\\x7f]{0,})[\s\'\"]{1,})|((ftp|http[s]?)?[:\/]{0,}(localhost[\:0-9]{0,}|\d+\.\d+\.\d+\.\d+[\:0-9]{0,}|[a-zA-Z0-9\.]{0,}[a-zA-Z0-9]+\.[a-zA-Z0-9]+[\:0-9]{0,})[\/\.\?&\=\%a-zA-Z0-9\u4e00-\u9fa5\\x20-\\x7f]{0,}))')
+        self.pat_link=re.compile(ur'(((src|href)[\s\=\'\"]{1,}([\.\/][a-zA-Z0-9\/\.\u4e00-\u9fa5\\x20-\\x7f]{0,})[\s\'\"]{1,})|((ftp|http[s]?)?[:\/]{0,}(localhost[\:0-9]{0,}|\d+\.\d+\.\d+\.\d+[\:0-9]{0,}|[a-zA-Z0-9\u4e00-\u9fa5\\x20-\\x7f\.]{0,}[a-zA-Z0-9\u4e00-\u9fa5\\x20-\\x7f]+\.[a-zA-Z0-9\u4e00-\u9fa5\\x20-\\x7f]+[\:0-9]{0,})[\/\.\?&\=\%a-zA-Z0-9\u4e00-\u9fa5\\x20-\\x7f]{0,}))')
 
         self.headers = {"Content-type":"text/html; charset=gb2312", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8","Accept-Encoding":"gzip,deflate,sdch","Accept-Language":"zh-CN,zh;q=0.8","Cache-Control":"max-age=0","Connection":"keep-alive" ,"User-Agent":"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36 SE 2.X MetaSr 1.0", "Cookie": "visitkey=52562270763683935"}
 
