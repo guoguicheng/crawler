@@ -91,12 +91,12 @@ class carwler:
         #print(ret)
         #print("ret:"+ret[0][2])
         #return
-        print("GET [%s]" %(domain))
+        #print("GET [%s]" %(domain))
         result={"domain":"","currentUrl":"","httpStatusCode":0,"MIME":""}
-        linkType=ret[0][2] if ret[0][2] else ret[0][5] if ret[0][5] else "http"
-        #print("linkType=%s" %(linkType))
-        #return
+
+        linkType=ret[0][2] if len(ret) and ret[0][2] else ret[0][5] if len(ret) and ret[0][5] else "http"
         try:
+
             if linkType in ["src","href"]:
                 currentUrl=urljoin(url,ret[0][3])
             else:

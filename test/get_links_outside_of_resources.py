@@ -19,7 +19,10 @@ if __name__ =='__main__':
 	data=carw.getAllLinks(url,text)
 	#print(data)
 	for ur in data:
+	    print("GET [%s]" %(ur))
 	    ret=carw.getRealUrl(url,ur)
 	    if ret['httpStatusCode']==200:
-	        print(ret['currentUrl'])
+	        print(ret['currentUrl'],"OK")
+	    else:
+	        print(ret['currentUrl'],"Falied")
 	print("total=%d" %(len(data)))
