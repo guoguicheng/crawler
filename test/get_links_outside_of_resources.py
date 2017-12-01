@@ -1,5 +1,5 @@
 #encoding:utf-8
-import sys,os,filetype,urllib2
+import sys,os,filetype,urllib2,subprocess,shlex
 sys.path.append(r"../src")
 from crawler import *
 url=""
@@ -17,13 +17,9 @@ if __name__ =='__main__':
 	carw= carwler()
 	text=carw.delComment(carw.delScript(carw.getHtml(url)))
 	data=carw.getAllLinks(url,text)
-	headers = {"Content-type":"text/html; charset=gb2312", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8","Accept-Encoding":"gzip,deflate,sdch","Accept-Language":"zh-CN,zh;q=0.8","Cache-Control":"max-age=0","Connection":"keep-alive" ,"User-Agent":"Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36 SE 2.X MetaSr 1.0", "Cookie": "visitkey=52562270763683935"}
-	for url in data:
-	    req=urllib2.Request(url.encode("utf-8"),headers =headers )
-	    print url
-	    try:
-	        urllib2.urlopen(req)
-	    except urllib2.URLError,e:
-	        print("continue")
-	    else:
-	        print "OK"
+	#print(data)
+	for ur in data:
+	    ret=carw.getRealUrl(url,ur)
+	    if ret['httpStatusCode']==200:
+	        print(ret['currentUrl'])
+	print("total=%d" %(len(data)))
